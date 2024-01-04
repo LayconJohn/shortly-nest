@@ -8,9 +8,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { LocalStrategy } from './auth/strategies/local.strategy';
 import { LocalAuthGuard } from './auth/guards/local-auth.guard';
+import { UrlsModule } from './urls/urls.module';
 
 @Module({
-  imports: [UsersModule, PrismaModule, AuthModule],
+  imports: [UsersModule, PrismaModule, AuthModule, UrlsModule],
   controllers: [AppController],
   providers: [
     AppService,
