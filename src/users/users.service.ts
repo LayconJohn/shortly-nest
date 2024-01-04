@@ -12,21 +12,17 @@ export class UsersService {
   ){}
 
   async create(createUserDto: CreateUserDto) {
-    /*
+    
     if (createUserDto.password !== createUserDto.confirmPassword) {
       throw new BadRequesterror('Password and confirm Passowrd must be the same')
     }
 
-
-    {
+    return this.prismaService.users.create({
+      data: {
         name: createUserDto.name,
         email: createUserDto.email,
         password: await bcrypt.hash(createUserDto.password, 10)
       }
-    */
-
-    return this.prismaService.users.create({
-      data: createUserDto
     });
   }
 
