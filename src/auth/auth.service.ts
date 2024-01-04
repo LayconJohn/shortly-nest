@@ -5,6 +5,7 @@ import { UsersService } from 'src/users/users.service';
 import { UserPayload } from './models/UserPayload';
 import * as bcrypt from "bcrypt"
 import { UnauthorzedError } from 'src/errors/index';
+import { UserToken } from './models/UserToken';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
         private readonly usersService: UsersService
     ) {}
 
-    async login(user: User) {
+    async login(user: User): Promise<UserToken> {
         const payload: UserPayload = {
             sub: user?.id,
             email: user?.email,

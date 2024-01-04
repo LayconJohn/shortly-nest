@@ -8,7 +8,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 export class AuthController {
     constructor(private readonly authService: AuthService){}
 
-    @isPublic()
+    //@isPublic()
     @UseGuards(LocalAuthGuard)
     @Post('login')
     @HttpCode(HttpStatus.OK)
