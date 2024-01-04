@@ -17,13 +17,18 @@ export class UsersService {
       throw new BadRequesterror('Password and confirm Passowrd must be the same')
     }
 
-    return this.prismaService.users.create({
+    const createdUser = await this.prismaService.users.create({
       data: {
         name: createUserDto.name,
         email: createUserDto.email,
         password: await bcrypt.hash(createUserDto.password, 10)
       }
     });
+
+    return {
+      ...createdUser,
+      password: undefined
+    }
   }
 
   findAll() {
