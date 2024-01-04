@@ -18,4 +18,10 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     password: string;
+
+    @MaxLength(30)
+    @MinLength(8)
+    @IsString()
+    @IsNotEmpty()
+    confirmPassword: string;
 }
