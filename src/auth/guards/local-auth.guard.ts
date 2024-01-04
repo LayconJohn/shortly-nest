@@ -3,12 +3,12 @@ import { AuthGuard } from "@nestjs/passport";
 import { Observable } from "rxjs";
 
 @Injectable()
-export class LocalAuthGuard extends AuthGuard('local'){
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+export class LocalAuthGuard extends AuthGuard('local') {
+    canActivate(context: ExecutionContext) {
         return super.canActivate(context);
     }
 
-    handleRequest<TUser = any>(err: any, user: any, info: any, context: ExecutionContext, status?: any): TUser {
+    handleRequest(err: any, user: any, ) {
         if (err || !user) {
             throw new UnauthorizedException(err?.message);
         }
