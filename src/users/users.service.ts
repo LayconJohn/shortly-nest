@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
+import { BadRequesterror } from 'src/errors/index';
 
 @Injectable()
 export class UsersService {
@@ -9,7 +11,20 @@ export class UsersService {
     private readonly prismaService: PrismaService
   ){}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
+    /*
+    if (createUserDto.password !== createUserDto.confirmPassword) {
+      throw new BadRequesterror('Password and confirm Passowrd must be the same')
+    }
+
+
+    {
+        name: createUserDto.name,
+        email: createUserDto.email,
+        password: await bcrypt.hash(createUserDto.password, 10)
+      }
+    */
+
     return this.prismaService.users.create({
       data: createUserDto
     });
