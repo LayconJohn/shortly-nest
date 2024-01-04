@@ -6,7 +6,11 @@ import { AuthRequest } from './models/AuthRequest';
 export class AuthController {
     constructor(private readonly authService: AuthService){}
 
+    //Criar decorator isPublic
+    //Criar use guard com local auth guard 
     @Post('login')
     @HttpCode(HttpStatus.OK)
-    async login(@Request() req: AuthRequest) {}
+    async login(@Request() req: AuthRequest) {
+        return await this.authService.login(req.user);
+    }
 }
