@@ -10,13 +10,13 @@ export class UrlsService {
     private readonly prismaService: PrismaService
   ){}
 
-  shortenUrl(createUrlDto: CreateUrlDto) {
+  shortenUrl(createUrlDto: CreateUrlDto, userId: number) {
     const shortUrl = nanoid(10); //TO-DO:Ver BO de importação
     return this.prismaService.urls.create({
       data: {
         ...createUrlDto,
         shortUrl,
-        userId: createUrlDto.userId
+        userId
       }
     })
   }

@@ -6,8 +6,4 @@ export class CreateUrlDto extends PartialType(Url){
     @IsString()
     @IsNotEmpty()
     url: string;
-
-    @IsNumber()
-    @IsNotEmpty()
-    userId?: number;
 }
