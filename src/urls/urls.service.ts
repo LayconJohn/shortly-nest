@@ -48,11 +48,12 @@ export class UrlsService {
     }
   }
 
-  update(id: number, updateUrlDto: UpdateUrlDto) {
-    return `This action updates a #${id} url`;
-  }
+  async remove(id: number) {
+    const url = await this.prismaService.urls.findUnique({where: {id}})
+    if (!url) {
+      throw new NotFoundError("Url not found")
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} url`;
+    return this.prismaService.urls.delete({where: {id}})
   }
 }
