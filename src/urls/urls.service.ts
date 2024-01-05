@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { nanoid } from 'nanoid';
 
 @Injectable()
 export class UrlsService {
-  create(createUrlDto: CreateUrlDto) {
-    return 'This action adds a new url';
+  constructor(
+    private readonly prismaService: PrismaService
+  ){}
+
+  shortenUrl(createUrlDto: CreateUrlDto, userId: number) {
+    const shortUrl = nanoid(10); //TO-DO:Ver BO de importação
+    return 
   }
 
   findAll() {

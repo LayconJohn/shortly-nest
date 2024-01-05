@@ -2,14 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UrlsService } from './urls.service';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
+import { CurrentUser } from 'src/auth/decorator/current-user.decorator';
+import { User } from 'src/users/entities/User';
 
 @Controller('urls')
 export class UrlsController {
   constructor(private readonly urlsService: UrlsService) {}
 
   @Post()
-  create(@Body() createUrlDto: CreateUrlDto) {
-    return this.urlsService.create(createUrlDto);
+  create(@Body() createUrlDto: CreateUrlDto,@CurrentUser() currentUser: User) {
+    return this.urlsService.shortenUrl(createUrlDto, currentUser.id);
   }
 
   @Get()
