@@ -15,4 +15,14 @@ model Users {
   name String
   email String @unique
   password String
+  urls Urls[]
+}
+
+model Urls {
+  id Int @id @default(autoincrement())
+  userId Int
+  url String
+  shortUrl String
+  visitCount Int @default(0)
+  users  Users @relation(fields: [userId], references: [id])
 }
