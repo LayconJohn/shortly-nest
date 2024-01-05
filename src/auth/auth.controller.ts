@@ -15,6 +15,6 @@ import { AuthRequest } from './models/AuthRequest';
     @Post('login')
     @HttpCode(HttpStatus.OK)
     async login(@Body() body: AuthRequest) {
-      return this.authService.login(body);
+      return this.authService.validateUser(body.email, body.password);
     }
   }
