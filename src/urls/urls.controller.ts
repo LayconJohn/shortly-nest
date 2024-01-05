@@ -22,14 +22,24 @@ export class UrlsController {
     return this.urlsService.findAll(id);
   }
 
-  @Get(':id')
+  @Get('/select/:id')
   findOne(@Param('id') id: string) {
     return this.urlsService.findOne(+id);
   }
 
-  @Delete(':id')
+  @Delete('/remove/:id')
   @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.urlsService.remove(+id);
+  }
+
+  @Get('/open/:shortUrl')
+  open(@Param('shortUrl') url: string){
+    return this.urlsService.redirectUrl(url);
+  }
+
+  @Get('/ranking')
+  ranking(){
+    return this.urlsService.rankingUrls();
   }
 }
