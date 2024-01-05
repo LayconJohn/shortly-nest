@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/entities/User';
 import { UsersService } from 'src/users/users.service';
-import { UserPayload } from './models/UserPayload';
 import * as bcrypt from "bcrypt"
 import { UnauthorizedError } from '../errors/index';
-import { UserToken } from './models/UserToken';
+import { AuthRequest } from './models/AuthRequest';
+
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
         private readonly usersService: UsersService
     ) {}
 
-    async login(user: User): Promise<UserToken> {
+    async login(user: AuthRequest) {
         const payload: UserPayload = {
             sub: user?.id,
             email: user?.email,
@@ -42,5 +42,17 @@ export class AuthService {
         }
 
         throw new UnauthorizedError('Email address or password provided is incorrect.')
+    }
+
+    async generateToken(payload: User) {
+        return {
+            access_token: this.jwtService.sign(
+                {email: payload.email},
+                {
+                    secret: process.env.JWT_SECRET,
+                    expiresIn: '10d'
+                }
+            )
+        }
     }
 }
