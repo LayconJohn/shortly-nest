@@ -23,6 +23,6 @@ model Urls {
   userId Int
   url String
   shortUrl String
-  visitCount Int
+  visitCount Int @default(0)
   users  Users @relation(fields: [userId], references: [id])
 }
