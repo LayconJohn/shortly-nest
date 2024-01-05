@@ -1,7 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CurrentUser } from './auth/decorator/current-user.decorator';
-import { User } from './users/entities/User';
 
 @Controller()
 export class AppController {
@@ -14,7 +12,7 @@ export class AppController {
   }
 
   @Get('/me')
-  getMe(@CurrentUser() currentUser: User) {
-    return currentUser;
+  getMe(): string {
+    return 'rota autenticada';
   }
 }
