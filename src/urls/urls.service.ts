@@ -3,6 +3,7 @@ import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { nanoid } from 'nanoid';
+import { NotFoundError } from 'src/errors/index';
 
 @Injectable()
 export class UrlsService {
@@ -29,8 +30,22 @@ export class UrlsService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} url`;
+  async findOne(id: number) {
+    const url = await this.prismaService.urls.findUnique({
+      where: {
+        id
+      }
+    });
+    
+    if(!url) {
+      throw new NotFoundError("Url not found");
+    }
+
+    return {
+      id,
+      shortUrl: url.shortUrl,
+      url: url.url
+    }
   }
 
   update(id: number, updateUrlDto: UpdateUrlDto) {
