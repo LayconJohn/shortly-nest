@@ -14,7 +14,7 @@ export class AuthService {
         private readonly usersService: UsersService
     ) {}
 
-    async validateUser(email: string, password: string): Promise<any> {
+    async validateUser(email: string, password: string): Promise<{access_token: string}> {
         const user = await this.usersService.findByEmail(email);
 
         if (user) {
