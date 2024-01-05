@@ -4,7 +4,7 @@ import { User } from 'src/users/entities/User';
 import { UsersService } from 'src/users/users.service';
 import { UserPayload } from './models/UserPayload';
 import * as bcrypt from "bcrypt"
-import { UnauthorzedError } from 'src/errors/index';
+import { UnauthorizedError } from '../errors/index';
 import { UserToken } from './models/UserToken';
 
 @Injectable()
@@ -41,6 +41,6 @@ export class AuthService {
             }
         }
 
-        throw new UnauthorzedError('Email address or password provided is incorrect.')
+        throw new UnauthorizedError('Email address or password provided is incorrect.')
     }
 }

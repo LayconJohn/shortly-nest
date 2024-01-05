@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from "@nestjs/common";
-import { UnauthorzedError } from "src/errors/index";
+import { UnauthorizedError } from "../../errors/index";
 
-@Catch(UnauthorzedError)
+@Catch(UnauthorizedError)
 export class UnauthorizedErrorFilter implements ExceptionFilter {
     catch(exception: any, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
