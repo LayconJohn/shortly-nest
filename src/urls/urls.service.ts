@@ -33,7 +33,7 @@ export class UrlsService {
   async findOne(id: number) {
     const url = await this.prismaService.urls.findUnique({
       where: {
-        id
+        id: id
       }
     });
     
@@ -51,9 +51,25 @@ export class UrlsService {
   async remove(id: number) {
     const url = await this.prismaService.urls.findUnique({where: {id}})
     if (!url) {
-      throw new NotFoundError("Url not found")
+      throw new NotFoundError("Url not found");
     }
 
     return this.prismaService.urls.delete({where: {id}})
+  }
+
+  async redirectUrl(url: string){
+    const reqUrl = await this.prismaService.urls.findFirst({where: {shortUrl: url}});
+    if (!reqUrl) {
+      throw new NotFoundError("Url not found");
+    }
+
+    return this.prismaService.urls.update({
+      where: {
+        id: reqUrl.id
+      },
+      data: {
+        visitCount: reqUrl.visitCount + 1
+      }
+    })
   }
 }

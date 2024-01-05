@@ -32,4 +32,9 @@ export class UrlsController {
   remove(@Param('id') id: string) {
     return this.urlsService.remove(+id);
   }
+
+  @Get('/open/:shortUrl')
+  open(@Param('shortUrl') url: string){
+    return this.urlsService.redirectUrl(url);
+  }
 }
