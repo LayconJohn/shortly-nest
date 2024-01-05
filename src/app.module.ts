@@ -6,7 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { LocalStrategy } from './auth/strategies/local.strategy';
+import { LocalStrategy } from './auth/strategies/jwt-payload';
 import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { UrlsModule } from './urls/urls.module';
 

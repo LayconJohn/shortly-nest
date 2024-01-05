@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './strategies/local.strategy';
+import { LocalStrategy } from './strategies/jwt-payload';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LoginValidationMiddleware } from 'src/middlewares/login-validation.middlewares';
 

@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { isPublic } from './auth/decorator/is-public.decorator';
 import { CurrentUser } from './auth/decorator/current-user.decorator';
 import { User } from './users/entities/User';
 
@@ -8,7 +7,7 @@ import { User } from './users/entities/User';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @isPublic()
+
   @Get()
   getHello(): string {
     return this.appService.getHello();

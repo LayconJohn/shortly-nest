@@ -4,13 +4,13 @@ import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
 import { CurrentUser } from 'src/auth/decorator/current-user.decorator';
 import { User } from 'src/users/entities/User';
-import { isPublic } from 'src/auth/decorator/is-public.decorator';
+import { IsPublic } from 'src/auth/decorator/is-public.decorator';
 
 @Controller('urls')
 export class UrlsController {
   constructor(private readonly urlsService: UrlsService) {}
 
-  @isPublic()
+  @IsPublic()
   @Post('/shorten')
   create(@Body() createUrlDto: CreateUrlDto,@CurrentUser() currentUser: User) {
     return this.urlsService.shortenUrl(createUrlDto, currentUser.id);
