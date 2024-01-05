@@ -15,9 +15,11 @@ export class UrlsController {
     return this.urlsService.shortenUrl(createUrlDto, req.user.id);
   }
 
-  @Get()
-  findAll() {
-    return this.urlsService.findAll();
+  @Get('/me')
+  @UseGuards(AuthGuard('jwt'))
+  findAll( @Request() req: any) {
+    const id: number = req.user.id    
+    return this.urlsService.findAll(id);
   }
 
   @Get(':id')

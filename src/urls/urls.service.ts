@@ -21,8 +21,12 @@ export class UrlsService {
     })
   }
 
-  findAll() {
-    return `This action returns all urls`;
+  findAll(id: number) {
+    return this.prismaService.urls.findMany({
+      where: {
+        userId: id
+      }
+    });
   }
 
   findOne(id: number) {
