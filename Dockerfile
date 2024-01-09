@@ -1,6 +1,6 @@
 FROM node:20-slim
 
-RUN apt update && apt install -y openssl
+RUN apt update && apt install -y openssl procps
 
 USER node
 
