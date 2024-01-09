@@ -9,4 +9,4 @@ WORKDIR /home/node/app
 COPY --chown=node:node packgae*.json ./
 
 
-CMD ["/home/node/app/start-dev.sh"]
+CMD ["/home/node/app/.docker/start-dev.sh"]
