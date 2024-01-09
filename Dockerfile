@@ -1,14 +1,7 @@
-FROM node:latest AS builder
+FROM node:20-slim
 
-# Create app directory
-WORKDIR /app
+WORKDIR /home/node/app
 
-COPY . .
+USER node
 
-# Install app dependencies
-RUN npm install
-
-RUN npm run build
-
-EXPOSE 3000
-CMD [ "npm", "run", "start:prod" ]
+CMD ["tail", "-f", "/dev/null"]
