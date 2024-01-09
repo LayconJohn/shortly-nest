@@ -1,7 +1,12 @@
 FROM node:20-slim
 
-WORKDIR /home/node/app
-
 USER node
 
-CMD ["tail", "-f", "/dev/null"]
+RUN mkdir /home/node/app
+
+WORKDIR /home/node/app
+
+COPY --chown=node:node packgae*.json ./
+
+
+CMD ["/home/node/app/start-dev.sh"]
