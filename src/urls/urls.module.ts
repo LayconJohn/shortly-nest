@@ -3,10 +3,15 @@ import { UrlsService } from './urls.service';
 import { UrlsController } from './urls.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
+import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 
 @Module({
   imports: [PrismaModule],
   controllers: [UrlsController],
-  providers: [UrlsService, FindAllUrlsUseCase],
+  providers: [
+    UrlsService, 
+    FindAllUrlsUseCase,
+    ShortenUrlUseCase
+  ],
 })
 export class UrlsModule {}

@@ -22,14 +22,6 @@ export class UrlsService {
     })
   }
 
-  findAll(id: number) {
-    return this.prismaService.urls.findMany({
-      where: {
-        userId: id
-      }
-    });
-  }
-
   async findOne(id: number) {
     const url = await this.prismaService.urls.findFirst({
       where: {

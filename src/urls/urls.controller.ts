@@ -5,18 +5,20 @@ import { UpdateUrlDto } from './dto/update-url.dto';
 import { User } from 'src/users/entities/User';
 import { AuthGuard } from '@nestjs/passport';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
+import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 
 @Controller('urls')
 export class UrlsController {
   constructor(
     private readonly urlsService: UrlsService,
-    private readonly findAllUrlsUseCase: FindAllUrlsUseCase
+    private readonly findAllUrlsUseCase: FindAllUrlsUseCase,
+    private readonly shortenUrlUseCase: ShortenUrlUseCase
     ) {}
 
   @Post('/shorten')
   @UseGuards(AuthGuard('jwt'))
   create(@Body() createUrlDto: CreateUrlDto, @Request() req: any) {
-    return this.urlsService.shortenUrl(createUrlDto, req.user.id);
+    return this.shortenUrlUseCase.execute(createUrlDto, +req.user.id);
   }
 
   @Get('/me')
