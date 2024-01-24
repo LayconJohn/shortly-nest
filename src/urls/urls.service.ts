@@ -11,31 +11,6 @@ export class UrlsService {
     private readonly prismaService: PrismaService
   ){}
 
-  async remove(id: number) {
-    const url = await this.prismaService.urls.findFirst({where: {id}})
-    if (!url) {
-      throw new NotFoundError("Url not found");
-    }
-
-    return this.prismaService.urls.delete({where: {id}})
-  }
-
-  async redirectUrl(url: string){
-    const reqUrl = await this.prismaService.urls.findFirst({where: {shortUrl: url}});
-    if (!reqUrl) {
-      throw new NotFoundError("Url not found");
-    }
-
-    return this.prismaService.urls.update({
-      where: {
-        id: reqUrl.id
-      },
-      data: {
-        visitCount: reqUrl.visitCount + 1
-      }
-    })
-  }
-
   async rankingUrls() {
     const urls = await this.prismaService.urls.findMany({
       include: {

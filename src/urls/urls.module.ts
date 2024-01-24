@@ -6,6 +6,7 @@ import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
 import { RemoveUrlUseCase } from './usecases/remove-url.usecase';
+import { RedirectUrlUseCase } from './usecases/redirect-url.usecase';
 
 @Module({
   imports: [PrismaModule],
@@ -16,6 +17,7 @@ import { RemoveUrlUseCase } from './usecases/remove-url.usecase';
     ShortenUrlUseCase,
     FindOneUrlUsecase,
     RemoveUrlUseCase,
+    RedirectUrlUseCase,
   ],
 })
 export class UrlsModule {}

@@ -8,6 +8,7 @@ import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
 import { RemoveUrlUseCase } from './usecases/remove-url.usecase';
+import { RedirectUrlUseCase } from './usecases/redirect-url.usecase';
 
 @Controller('urls')
 export class UrlsController {
@@ -16,7 +17,8 @@ export class UrlsController {
     private readonly findAllUrlsUseCase: FindAllUrlsUseCase,
     private readonly shortenUrlUseCase: ShortenUrlUseCase,
     private readonly findOneUrlUseCase: FindOneUrlUsecase,
-    private readonly removeUrlUseCase: RemoveUrlUseCase
+    private readonly removeUrlUseCase: RemoveUrlUseCase,
+    private readonly redirectUrlUseCase: RedirectUrlUseCase,
     ) {}
 
   @Post('/shorten')
@@ -45,7 +47,7 @@ export class UrlsController {
 
   @Get('/open/:shortUrl')
   open(@Param('shortUrl') url: string){
-    return this.urlsService.redirectUrl(url);
+    return this.redirectUrlUseCase.execute(url);
   }
 
   @Get('/ranking')
