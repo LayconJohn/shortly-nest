@@ -1,5 +1,4 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
-import { UrlsService } from './urls.service';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
 import { User } from 'src/users/entities/User';
@@ -14,7 +13,6 @@ import { GetRankingUseCase } from './usecases/get-ranking.usecase';
 @Controller('urls')
 export class UrlsController {
   constructor(
-    private readonly urlsService: UrlsService,
     private readonly findAllUrlsUseCase: FindAllUrlsUseCase,
     private readonly shortenUrlUseCase: ShortenUrlUseCase,
     private readonly findOneUrlUseCase: FindOneUrlUsecase,
