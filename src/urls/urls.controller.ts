@@ -7,6 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
+import { RemoveUrlUseCase } from './usecases/remove-url.usecase';
 
 @Controller('urls')
 export class UrlsController {
@@ -14,7 +15,8 @@ export class UrlsController {
     private readonly urlsService: UrlsService,
     private readonly findAllUrlsUseCase: FindAllUrlsUseCase,
     private readonly shortenUrlUseCase: ShortenUrlUseCase,
-    private readonly findOneUrlUseCase: FindOneUrlUsecase
+    private readonly findOneUrlUseCase: FindOneUrlUsecase,
+    private readonly removeUrlUseCase: RemoveUrlUseCase
     ) {}
 
   @Post('/shorten')
@@ -38,7 +40,7 @@ export class UrlsController {
   @Delete('/remove/:id')
   @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
-    return this.urlsService.remove(+id);
+    return this.removeUrlUseCase.execute(+id);
   }
 
   @Get('/open/:shortUrl')

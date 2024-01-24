@@ -11,24 +11,6 @@ export class UrlsService {
     private readonly prismaService: PrismaService
   ){}
 
-  async findOne(id: number) {
-    const url = await this.prismaService.urls.findFirst({
-      where: {
-        id
-      }
-    });
-    
-    if(!url) {
-      throw new NotFoundError("Url not found");
-    }
-
-    return {
-      id,
-      shortUrl: url.shortUrl,
-      url: url.url
-    }
-  }
-
   async remove(id: number) {
     const url = await this.prismaService.urls.findFirst({where: {id}})
     if (!url) {
