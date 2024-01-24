@@ -6,13 +6,15 @@ import { User } from 'src/users/entities/User';
 import { AuthGuard } from '@nestjs/passport';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
+import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
 
 @Controller('urls')
 export class UrlsController {
   constructor(
     private readonly urlsService: UrlsService,
     private readonly findAllUrlsUseCase: FindAllUrlsUseCase,
-    private readonly shortenUrlUseCase: ShortenUrlUseCase
+    private readonly shortenUrlUseCase: ShortenUrlUseCase,
+    private readonly findOneUrlUseCase: FindOneUrlUsecase
     ) {}
 
   @Post('/shorten')
@@ -25,12 +27,12 @@ export class UrlsController {
   @UseGuards(AuthGuard('jwt'))
   findAll( @Request() req: any) {
     const id: number = req.user.id    
-    return this.findAllUrlsUseCase.execute(id);
+    return this.findAllUrlsUseCase.execute(+id);
   }
 
   @Get('/select/:id')
   findOne(@Param('id') id: string) {
-    return this.urlsService.findOne(+id);
+    return this.findOneUrlUseCase.execute(+id);
   }
 
   @Delete('/remove/:id')

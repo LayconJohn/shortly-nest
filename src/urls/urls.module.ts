@@ -4,6 +4,7 @@ import { UrlsController } from './urls.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
+import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
 
 @Module({
   imports: [PrismaModule],
@@ -11,7 +12,8 @@ import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
   providers: [
     UrlsService, 
     FindAllUrlsUseCase,
-    ShortenUrlUseCase
+    ShortenUrlUseCase,
+    FindOneUrlUsecase,
   ],
 })
 export class UrlsModule {}
