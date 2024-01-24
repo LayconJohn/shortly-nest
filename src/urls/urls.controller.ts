@@ -9,6 +9,7 @@ import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';
 import { RemoveUrlUseCase } from './usecases/remove-url.usecase';
 import { RedirectUrlUseCase } from './usecases/redirect-url.usecase';
+import { GetRankingUseCase } from './usecases/get-ranking.usecase';
 
 @Controller('urls')
 export class UrlsController {
@@ -19,6 +20,7 @@ export class UrlsController {
     private readonly findOneUrlUseCase: FindOneUrlUsecase,
     private readonly removeUrlUseCase: RemoveUrlUseCase,
     private readonly redirectUrlUseCase: RedirectUrlUseCase,
+    private readonly getRankingUseCase: GetRankingUseCase
     ) {}
 
   @Post('/shorten')
@@ -52,6 +54,6 @@ export class UrlsController {
 
   @Get('/ranking')
   ranking(){
-    return this.urlsService.rankingUrls();
+    return this.getRankingUseCase.execute();
   }
 }

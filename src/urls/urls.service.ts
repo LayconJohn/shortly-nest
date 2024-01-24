@@ -11,58 +11,5 @@ export class UrlsService {
     private readonly prismaService: PrismaService
   ){}
 
-  async rankingUrls() {
-    const urls = await this.prismaService.urls.findMany({
-      include: {
-        users: {
-          select: {
-            name: true
-          }
-        }
-      }
-    })
 
-
-    const aggregate = await this.prismaService.urls.aggregate({
-      _count: {
-        id: true,
-      },
-      _sum: {
-        visitCount: true
-      },
-      orderBy: {
-        visitCount: 'desc'
-      },
-      take: 10,
-    })
-
-    const query = `
-    SELECT
-    users.id,
-    users.name,
-    COUNT(urls.id) AS "linksCount",
-    SUM(urls."visitCount") AS "visitCount"
-    FROM users
-    JOIN urls ON users.id = urls."userId"
-    GROUP BY users.id ORDER BY "visitCount" DESC
-    LIMIT 10
-    `
-
-    return this.prismaService.urls.groupBy({
-      by: 'userId',
-      _sum: {
-        visitCount: true,
-      },
-      _count:{
-        url: true
-      },
-      orderBy: {
-        _sum: {
-          visitCount: 'desc'
-        }
-      },
-      take: 10
-    })
-
-  }
 }
