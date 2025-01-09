@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from "@nestjs/common";
-import { BadRequesterror } from "src/errors/index";
+import { BadRequesterror } from "src/infra/utils/errors/index";
 
 @Catch(BadRequesterror)
 export class BadRequestErrorFilter implements ExceptionFilter {

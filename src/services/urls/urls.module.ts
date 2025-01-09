@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UrlsController } from './urls.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaModule } from 'src/infra/prisma/prisma.module';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';
 import { FindOneUrlUsecase } from './usecases/find-one-url.usecase';

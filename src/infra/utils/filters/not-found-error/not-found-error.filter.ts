@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from "@nestjs/common";
-import { NotFoundError } from "src/errors/index";
+import { NotFoundError } from "src/infra/utils/errors/index";
 
 @Catch(NotFoundError)
 export class NotFoundErrorFilter implements ExceptionFilter {

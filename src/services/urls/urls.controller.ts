@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
-import { User } from 'src/users/entities/User';
+import { User } from 'src/services/users/entities/User';
 import { AuthGuard } from '@nestjs/passport';
 import { FindAllUrlsUseCase } from './usecases/find-all-urls.usecase';
 import { ShortenUrlUseCase } from './usecases/shorten-url.usecase';

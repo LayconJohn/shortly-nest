@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "src/infra/prisma/prisma.service";
 import { CreateUrlDto } from "../dto/create-url.dto";
 import { nanoid } from "nanoid";
 

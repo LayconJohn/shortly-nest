@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { NotFoundError } from "src/errors/index";
-import { PrismaService } from "src/prisma/prisma.service";
+import { NotFoundError } from "src/infra/utils/errors/index";
+import { PrismaService } from "src/infra/prisma/prisma.service";
 
 @Injectable()
 export class RedirectUrlUseCase {

@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { BadRequestErrorFilter } from './filters/bad-request-error/bad-request-error.filter';
-import { UnauthorizedErrorFilter } from './filters/unauthorized-error/unauthorized-error.filter';
+import { BadRequestErrorFilter } from './infra/utils/filters/bad-request-error/bad-request-error.filter';
+import { UnauthorizedErrorFilter } from './infra/utils/filters/unauthorized-error/unauthorized-error.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
